@@ -1,10 +1,46 @@
 spring:
   data:
     mongodb:
-      database: Bankdb
+      database: BankAccountdb
       host: localhost
       port: 27017
-
+  application:
+    name: BANKACCOUNT-SERVICE
 
 server:
   port: 9292
+  
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+        - health
+  endpoint:
+    health:
+      show-details: always
+      
+resilience4j:
+  circuitbreaker:
+    instances:
+      movementService:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 2000
+        cancel-running-future: true
+    instances:
+      timelimiterSlow:
+         baseConfig: default
