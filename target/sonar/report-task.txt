@@ -1,0 +1,6 @@
+projectKey=com.javatechie:spring-reactive-mongo-crud
+serverUrl=http://localhost:9000
+serverVersion=9.4.0.54424
+dashboardUrl=http://localhost:9000/dashboard?id=com.javatechie%3Aspring-reactive-mongo-crud
+ceTaskId=AYDezLR-4v9FYWBv-Kcb
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYDezLR-4v9FYWBv-Kcb
