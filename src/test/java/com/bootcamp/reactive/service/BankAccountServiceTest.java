@@ -22,9 +22,21 @@ class BankAccountServiceTest {
 	
 	@Autowired
 	BankAccountService service;
- 
 
+	@Autowired
+	Mono<BankAccountDto> dato;
+ 
 	@Test
+	public void saveBankAccountPlazoFij() {
+		
+		
+	Mono<CustomerPersonal> customer = BankServiceAccount.saveBankAccountPlazoFijo(dato);
+		
+		StepVerifier.create(customer)
+			.expectNext(new CustomerPersonal("1", "Yhulios", "Guzman", 0, 0, null, null, null)).verifyComplete();
+	}	
+
+	/*@Test
 	public void when_saveBankAccountAhorro_ok() {
 				
 		//ESTO SE LE MANDA AL SERVICE
@@ -53,6 +65,6 @@ class BankAccountServiceTest {
 			.expectNext(customerPersonal)
 			.expectComplete()
 			.verify();
-	}
+	}*/
 
 }
